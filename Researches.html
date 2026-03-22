@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Archive – Lemery Colleges</title>
+
+<style>
+body {
+    font-family: "Calisto MT","Bookman Old Style",Georgia,serif;
+    background: linear-gradient(135deg, #1f3c6e, #2f6fb5, #4a8fd8);
+    min-height: 100vh;
+    color: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: #1f3c6e;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    font-weight: bold;
+}
+
+header img {
+    height: 70px;
+    margin-right: 15px;
+}
+
+header h1 {
+    font-family: "Calisto MT","Bookman Old Style",Georgia,serif;
+    font-size: 20px;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+    flex: 1;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.filter {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filter select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    border: none;
+}
+
+.year-section {
+    margin-bottom: 30px;
+}
+
+.year-section h2 {
+    background: #2f6fb5;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.research-item {
+    background: #e0f7fa;
+    color: #000;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.research-item strong {
+    color: #1f3c6e;
+}
+
+.research-item .description {
+    margin-top: 8px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.research-item a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #1f3c6e;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #2f6fb5;
+    color: white;
+}
+
+.pagination button.disabled {
+    background: #888;
+    cursor: default;
+}
+
+footer {
+    background: white;
+    color: #555;
+    text-align: center;
+    padding: 12px 10px;
+    font-size: 12px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+footer h3 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+footer p {
+    margin: 2px 0;
+}
+
+.footer-links {
+    margin-top: 4px;
+}
+
+.footer-links a {
+    color: #555;
+    text-decoration: none;
+    margin: 0 6px;
+    font-size: 12px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="HS.png" alt="Lemery Colleges Logo">
+<h1>Lemery Colleges High School Department Research Archive</h1>
+</header>
+
+<main>
+
+<div class="filter">
+    <select id="yearSelect" onchange="displayArchive()">
+        <option value="All">All Years</option>
+        <option>2020</option>
+        <option>2021</option>
+        <option>2022</option>
+        <option>2023</option>
+        <option>2024</option>
+        <option>2025</option>
+    </select>
+</div>
+
+<div id="archiveContent"></div>
+<div class="pagination" id="pagination"></div>
+
+</main>
+
+<footer>
+<h3>Lemery Colleges</h3>
+<p>© 2025 Lemery Colleges. All rights reserved.</p>
+<div class="footer-links">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+<a href="#">Archive</a>
+<a href="#">Legal</a>
+</div>
+</footer>
+
+<script>
+const researches = [];
+let currentPage = 1;
+const itemsPerPage = 5;
+
+function addResearch(title, description, link, year) {
+    researches.push({ title, description, file: link, year });
+}
+
+addResearch("Sample Research 1","Sample description","https://drive.google.com/file/d/1Sample2020/view?usp=sharing","2020");
+addResearch("Sample Research 2","Sample description","https://drive.google.com/file/d/1Sample2021/view?usp=sharing","2021");
+addResearch("Sample Research 3","Sample description","https://drive.google.com/file/d/1Sample2022/view?usp=sharing","2022");
+addResearch("Sample Research 4","Sample description","https://drive.google.com/file/d/1Sample2023/view?usp=sharing","2023");
+addResearch("Sample Research 5","Sample description","https://drive.google.com/file/d/1Sample2024/view?usp=sharing","2024");
+addResearch("Customer Service Chatbot System for Assisting Customers Among the Selected Small Business in Brgy. Sanggalang, Lemery, Batangas. (2025). Alday, M. M., et al. Senior High School Research Paper, Lemery Colleges, Inc..","The study “Customer Service Chatbot System for Assisting Customers Among the Selected Small Business in Brgy. Sanggalang, Lemery, Batangas” from Lemery Colleges, Inc. aims to develop a chatbot that helps small businesses respond to customer inquiries quickly and improve customer service.","https://docs.google.com/document/d/1c6p9bU0FAvpiz0jVJtANxQy_OX0srX-S/edit?usp=drivesdk&ouid=103238449143572435272&rtpof=true&sd=true","2025");
+addResearch("Cybersecurity Awareness Website for Promoting Safe Coding Practices Among the Selected Students of Information and Communications Technology Strand in Lemery Colleges S.Y. 2025–2026","This study aims to develop a cybersecurity awareness website that promotes safe coding practices among ICT students. It provides educational resources to enhance students’ knowledge and encourage secure programming habits.","https://docs.google.com/document/d/1gQpmYTizEZBMnSkUaqG2_re2XoLte3Oi/edit?usp=drivesdk&ouid=103238449143572435272&rtpof=true&sd=true","2025");
+
+    
+    
+const params = new URLSearchParams(window.location.search);
+const keyword = params.get("keyword") ? params.get("keyword").toLowerCase() : "";
+const selectedYearFromSearch = params.get("year") ? params.get("year") : "All";
+
+document.addEventListener("DOMContentLoaded", () => {
+    const yearDropdown = document.getElementById("yearSelect");
+    if(yearDropdown) yearDropdown.value = selectedYearFromSearch;
+    displayArchive();
+});
+
+function displayArchive() {
+    const main = document.getElementById("archiveContent");
+    const selectedYear = document.getElementById("yearSelect").value;
+
+    let filtered = researches.filter(r => {
+        const matchKeyword = r.title.toLowerCase().includes(keyword) || r.description.toLowerCase().includes(keyword);
+        const matchYear = selectedYear === "All" || r.year === selectedYear;
+        return matchKeyword && matchYear;
+    });
+
+    if(filtered.length === 0){
+        main.innerHTML = "<p style='text-align:center;'>No research found.</p>";
+        document.getElementById("pagination").innerHTML = "";
+        return;
+    }
+
+    const totalPages = Math.ceil(filtered.length / itemsPerPage);
+    if(currentPage > totalPages) currentPage = totalPages;
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const pageItems = filtered.slice(start, start + itemsPerPage);
+
+    main.innerHTML = "";
+    const years = ["2020","2021","2022","2023","2024","2025"];
+
+    years.forEach(year => {
+        const items = pageItems.filter(r => r.year === year);
+        if(items.length > 0){
+            const yearDiv = document.createElement("div");
+            yearDiv.className = "year-section";
+            yearDiv.innerHTML = `<h2>${year}</h2>`;
+            items.forEach(r => {
+                const rDiv = document.createElement("div");
+                rDiv.className = "research-item";
+                rDiv.innerHTML = `
+                    <strong>${r.title}</strong>
+                    <div class="description">${r.description}</div>
+                    <a href="${r.file}" target="_blank">Open Research</a>
+                `;
+                yearDiv.appendChild(rDiv);
+            });
+            main.appendChild(yearDiv);
+        }
+    });
+
+    const paginationDiv = document.getElementById("pagination");
+    paginationDiv.innerHTML = "";
+
+    if(totalPages > 1){
+        for(let i=1;i<=totalPages;i++){
+            const btn = document.createElement("button");
+            btn.textContent = i;
+            btn.className = i === currentPage ? "disabled" : "";
+            btn.onclick = () => { currentPage = i; displayArchive(); };
+            paginationDiv.appendChild(btn);
+        }
+    }
+}
+</script>
+
+</body>
+</html>

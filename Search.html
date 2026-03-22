@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Archive – Lemery Colleges</title>
+
+<style>
+html, body {
+height:100%;
+margin:0;
+font-family:"Calisto MT","Bookman Old Style",Georgia,serif;
+}
+
+body{
+background:url("backround.jpg") no-repeat center/cover;
+background-attachment:fixed;
+display:flex;
+flex-direction:column;
+}
+
+header{
+display:flex;
+justify-content:center;
+align-items:center;
+background:rgba(10,25,80,0.9);
+color:#ffd700;
+padding:15px 10px;
+}
+
+.headerContent{
+display:flex;
+align-items:center;
+justify-content:space-between;
+width:100%;
+max-width:1200px;
+gap:12px;
+}
+
+.headerContent img.left-logo{
+height:60px;
+}
+
+.headerContent img.right-logo{
+height:60px;
+}
+
+header h1{
+margin:0;
+flex:1;
+text-align:center;
+font-size:15px;
+font-weight:bold;
+color:#EEEEEE;
+text-shadow:2px 2px 0 #1f3c6e,4px 4px 0 rgba(0,0,0,0.5);
+}
+
+main{
+flex:1;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+width:90%;
+max-width:700px;
+margin:auto;
+}
+
+input,select,button{
+width:100%;
+max-width:600px;
+padding:14px;
+font-size:16px;
+font-family:"Calisto MT","Bookman Old Style",Georgia,serif;
+border-radius:12px;
+border:2px solid rgba(255,255,255,0.7);
+margin-bottom:14px;
+box-sizing:border-box;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(2.5px);
+-webkit-backdrop-filter:blur(8px);
+color:#000;
+font-weight:500;
+}
+
+input::placeholder{
+color:#222;
+}
+
+select{
+color:#000;
+}
+
+button{
+background:rgba(31,60,110,0.8);
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+border:none;
+transition:all 0.3s ease;
+}
+
+button:hover{
+background:rgba(31,60,110,1);
+transform:scale(1.03);
+}
+
+footer{
+background:white;
+color:#555;
+text-align:center;
+padding:12px 10px;
+font-size:12px;
+border-top:1px solid #ddd;
+}
+
+footer h3{
+margin:0 0 4px 0;
+font-size:14px;
+color:#333;
+}
+
+footer p{
+margin:2px 0;
+}
+
+.footer-links{
+margin-top:4px;
+}
+
+.footer-links a{
+color:#555;
+text-decoration:none;
+margin:0 6px;
+font-size:12px;
+}
+
+.footer-links a:hover{
+text-decoration:underline;
+}
+
+#slidePanel{
+position:fixed;
+top:0;
+left:-100%;
+width:75%;
+height:100%;
+background:rgba(255,255,255,0.95);
+box-shadow:4px 0 12px rgba(0,0,0,0.3);
+transition:left 0.3s ease;
+z-index:999;
+padding:20px;
+display:flex;
+flex-direction:column;
+}
+
+#slidePanel button{
+width:100%;
+margin-bottom:20px;
+background:#1f3c6e;
+}
+
+#slidePanel button:hover{
+background:#2f6fb5;
+}
+
+#slidePanel.open{
+left:0;
+}
+
+.panelContent{
+overflow-y:auto;
+max-height:calc(100% - 70px);
+font-size:14px;
+line-height:1.6;
+color:#333;
+}
+
+.section{
+padding:10px 0;
+border-bottom:1px solid #ccc;
+}
+
+.section h3,.section h4{
+margin:0 0 5px 0;
+color:#1f3c6e;
+}
+
+.section p{
+margin:3px 0;
+}
+
+#toggleButton{
+position:fixed;
+top:50%;
+left:8px;
+transform:translateY(-50%);
+width:30px;
+height:30px;
+border-radius:50%;
+background:#1f3c6e;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+cursor:pointer;
+z-index:1000;
+box-shadow:0 2px 6px rgba(0,0,0,0.3);
+transition:all 0.3s ease;
+}
+
+#toggleButton:hover{
+background:#2f6fb5;
+transform:translateY(-50%) scale(1.08);
+}
+
+#toggleButton:hover{
+background:#2f6fb5;
+}
+
+@media (min-width:900px){
+header h1{
+font-size:24px;
+}
+
+.headerContent img{
+height:70px;
+}
+
+main{
+max-width:800px;
+}
+
+input,select,button{
+font-size:18px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="headerContent">
+<img class="left-logo" src="HS.png">
+<h1>LEMERY COLLEGES HIGH SCHOOL DEPARTMENT RESEARCH ARCHIVE</h1>
+<img class="right-logo" src="Lc.png">
+</div>
+</header>
+
+<main>
+
+<input type="text" id="keywordInput" placeholder="Search...">
+
+<select id="yearSelect">
+<option value="All">All Years</option>
+<option>2020</option>
+<option>2021</option>
+<option>2022</option>
+<option>2023</option>
+<option>2024</option>
+<option>2025</option>
+</select>
+
+<button onclick="searchResearch()">Search</button>
+
+</main>
+
+<div id="toggleButton">➤</div>
+
+<div id="slidePanel">
+
+<button onclick="window.location.href='Researches.html'">See Research Studies</button>
+
+<div class="panelContent">
+
+<div class="section">
+<h4>Information</h4>
+<h3>Lemery Colleges</h3>
+<p>Brgy. Bagong Sikat, Lemery, Batangas</p>
+</div>
+
+<div class="section">
+<h4>Email</h4>
+<p>General: info@lemerycolleges.edu.ph</p>
+<p>Admissions: lemerycolleges21@gmail.com</p>
+</div>
+
+<div class="section">
+<h4>Phone</h4>
+<p>Main Office: (043)-740-1179</p>
+<p>Admissions: (043)-740-2200</p>
+</div>
+
+<div class="section">
+<h4>To Upload Your Study Contact us</h4>
+<p>Facebook Page: Noah Aiden M. Reyes</p>
+<p>Contact Number: 0991 584 8649</p>
+<p>Email: noahaiden55@gmail.com</p>
+</div>
+
+</div>
+</div>
+
+<footer>
+<h3>Lemery Colleges</h3>
+<p>© 2025 Lemery Colleges. All rights reserved.</p>
+
+<div class="footer-links">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms</a>
+<a href="#">Archive</a>
+<a href="#">Legal</a>
+</div>
+
+</footer>
+
+<script>
+
+function searchResearch(){
+const keyword=encodeURIComponent(document.getElementById("keywordInput").value.trim());
+const year=encodeURIComponent(document.getElementById("yearSelect").value);
+window.location.href=`Researches.html?keyword=${keyword}&year=${year}`;
+}
+
+const slidePanel=document.getElementById('slidePanel');
+const toggleButton=document.getElementById('toggleButton');
+
+toggleButton.onclick=()=>{
+slidePanel.classList.toggle('open');
+if(slidePanel.classList.contains('open')){
+toggleButton.innerHTML='◀';
+}else{
+toggleButton.innerHTML='➤';
+}
+};
+
+document.addEventListener('click',e=>{
+if(!slidePanel.contains(e.target) && !toggleButton.contains(e.target)){
+slidePanel.classList.remove('open');
+toggleButton.innerHTML='➤';
+}
+});
+
+</script>
+
+</body>
+</html>

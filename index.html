@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login</title>
+
+<style>
+html,body{
+height:100%;
+margin:0;
+font-family:"Calisto MT","Bookman Old Style",Georgia,serif;
+}
+
+body{
+background:url("backround.jpg") no-repeat center center/cover;
+display:flex;
+flex-direction:column;
+}
+
+.main{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.container{
+background:rgba(255,255,255,0.65);
+padding:18px;
+border-radius:15px;
+width:90%;
+max-width:300px;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.logo{
+width:65px;
+margin-bottom:8px;
+}
+
+h2{
+color:#1f3c6e;
+margin-bottom:12px;
+font-size:18px;
+}
+
+select,input,button{
+width:100%;
+padding:10px;
+font-size:14px;
+border-radius:8px;
+border:1px solid #ccc;
+margin-bottom:12px;
+box-sizing:border-box;
+font-family:"Calisto MT","Bookman Old Style",Georgia,serif;
+}
+
+#section{
+width:100%;
+margin:0 auto 12px auto;
+display:block;
+}
+
+button{
+background:#1f3c6e;
+color:white;
+font-weight:bold;
+border:none;
+border-radius:20px;
+cursor:pointer;
+}
+
+button:hover{
+background:#2f6fb5;
+}
+
+.message{
+margin-top:10px;
+font-weight:bold;
+font-size:14px;
+color:red;
+}
+
+footer{
+background:white;
+color:#555;
+text-align:center;
+padding:12px 10px;
+font-size:12px;
+border-top:1px solid #ddd;
+}
+
+footer h3{
+margin:0 0 4px 0;
+font-size:14px;
+color:#333;
+}
+
+footer p{
+margin:2px 0;
+}
+
+.footer-links{
+margin-top:4px;
+}
+
+.footer-links a{
+color:#555;
+text-decoration:none;
+margin:0 6px;
+font-size:12px;
+}
+
+.footer-links a:hover{
+text-decoration:underline;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="container">
+
+<img src="Lc.png" class="logo">
+
+<h2>Creating Life's Champions</h2>
+<h3>Student Login</h3>
+
+<select id="grade">
+<option value="">Select Grade</option>
+<option value="11">Grade 11</option>
+<option value="12">Grade 12</option>
+</select>
+
+<select id="strand">
+<option value="">Select Strand</option>
+<option>HUMSS</option>
+<option>ICT</option>
+<option>ABM</option>
+<option>GAS</option>
+<option>HE</option>
+</select>
+
+<input type="text" id="section" placeholder="Enter Section">
+
+<button onclick="login()">Login</button>
+
+<p class="message" id="message"></p>
+
+</div>
+</div>
+
+<footer>
+
+<h3>Lemery Colleges</h3>
+<p>© 2025 Lemery Colleges. All rights reserved.</p>
+
+<div class="footer-links">
+<a href="#">Privacy</a>
+<a href="#">Terms</a>
+<a href="#">Archive</a>
+<a href="#">Legal</a>
+</div>
+
+</footer>
+
+<script>
+function login(){
+const grade=document.getElementById("grade").value;
+const strand=document.getElementById("strand").value;
+const section=document.getElementById("section").value.trim().toLowerCase();
+const msg=document.getElementById("message");
+
+const valid=
+(grade==="11"&&strand==="ICT"&&section==="pixel")||
+(grade==="12"&&strand==="ICT"&&section==="java")||
+(grade==="12"&&strand==="HUMSS"&&section==="noble")||
+(grade==="12"&&strand==="HUMSS"&&section==="dynamic")||
+(grade==="12"&&strand==="HUMSS"&&section==="approachable")||
+(grade==="11"&&strand==="HUMSS"&&section==="literature")||
+(grade==="11"&&strand==="HUMSS"&&section==="economics")||
+(grade==="11"&&strand==="HUMSS"&&section==="journalism")||
+(grade==="12"&&strand==="ABM"&&section==="bezos")||
+(grade==="11"&&strand==="ABM"&&section==="business")||
+(grade==="11"&&strand==="ABM"&&section==="entrepreneurship")||
+(grade==="11"&&strand==="GAS"&&section==="benevolent")||
+(grade==="11"&&strand==="HE"&&section==="collins")||
+(grade==="12"&&strand==="HE"&&section==="bartending");
+
+if(valid){
+msg.style.color="green";
+msg.innerText="Login successful...";
+setTimeout(()=>{window.location.href="Search.html";},1000);
+}else{
+msg.style.color="red";
+msg.innerText="Strand, Grade, Section doesn't match";
+}
+}
+</script>
+
+</body>
+</html>
